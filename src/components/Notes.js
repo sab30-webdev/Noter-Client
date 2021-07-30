@@ -20,6 +20,8 @@ import {
 import "./Notes.css";
 import { motion } from "framer-motion";
 import { setAuthToken } from "./../utils/setAuthToken";
+import { BackendUrl } from "../BackendUrl";
+
 
 const Notes = ({ history }) => {
   if (localStorage.token) {
@@ -47,7 +49,7 @@ const Notes = ({ history }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("https://still-wave-36292.herokuapp.com/notes");
+        const { data } = await axios.get(`${BackendUrl}/notes`);
         setNotes(data.notes);
         setRender(false);
       } catch (err) {
@@ -69,7 +71,7 @@ const Notes = ({ history }) => {
 
   const deleteAccount = async () => {
     try {
-      const response = await axios.delete("/notes");
+      const response = await axios.delete(`${BackendUrl}/notes`);
       if (response) {
         toast({
           title: "Account Deleted",
@@ -99,7 +101,7 @@ const Notes = ({ history }) => {
           isClosable: true,
         });
       } else {
-        await axios.post("/notes", newNote);
+        await axios.post(`${BackendUrl}/notes`, newNote);
         setNewNote({ ...newNote, title: "", description: "" });
         setRender(true);
         toast({

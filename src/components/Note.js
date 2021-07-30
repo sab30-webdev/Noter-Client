@@ -14,6 +14,7 @@ import {
 import { motion } from "framer-motion";
 import "./Note.css";
 import { setAuthToken } from "./../utils/setAuthToken";
+import { BackendUrl } from "../BackendUrl";
 
 const Note = ({ match, history }) => {
   if (localStorage.token) {
@@ -27,7 +28,7 @@ const Note = ({ match, history }) => {
   useEffect(() => {
     try {
       async function fetchData() {
-        const { data } = await axios.get(`https://still-wave-36292.herokuapp.com/notes/${noteId}`);
+        const { data } = await axios.get(`${BackendUrl}/notes/${noteId}`);
         setNote(data.note);
       }
       fetchData();
@@ -45,7 +46,7 @@ const Note = ({ match, history }) => {
     e.preventDefault();
 
     try {
-      const { data } = await axios.put(`https://still-wave-36292.herokuapp.com//notes/${match.params.id}`, note);
+      const { data } = await axios.put(`${BackendUrl}/notes/${match.params.id}`, note);
       if (!data.success) {
         toast({
           title: "Error",

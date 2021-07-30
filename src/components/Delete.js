@@ -11,6 +11,8 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/core";
+import { BackendUrl } from "../BackendUrl";
+
 
 const Delete = ({ noteId, history }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -18,7 +20,7 @@ const Delete = ({ noteId, history }) => {
 
   const onDelete = async (noteId) => {
     try {
-      await axios.delete(`https://still-wave-36292.herokuapp.com/notes/${noteId}`);
+      await axios.delete(`${BackendUrl}/notes/${noteId}`);
       history.push("/app/notes");
       toast({
         title: "Delete",

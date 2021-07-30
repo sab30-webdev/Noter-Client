@@ -9,6 +9,7 @@ import {
   useToast,
   Text,
 } from "@chakra-ui/core";
+import { BackendUrl } from "../../BackendUrl";
 
 const Register = ({ history }) => {
   const [data, setData] = useState({ name: "", email: "", password: "" });
@@ -23,7 +24,7 @@ const Register = ({ history }) => {
       e.preventDefault();
       const {
         data: { token },
-      } = await axios.post("https://still-wave-36292.herokuapp.com/register", data);
+      } = await axios.post(`${BackendUrl}/register`, data);
       if (token) {
         localStorage.setItem("token", token);
         toast({

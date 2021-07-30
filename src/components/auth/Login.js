@@ -9,6 +9,7 @@ import {
   useToast,
 } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
+import {BackendUrl} from "../../BackendUrl"
 
 const Login = ({ history }) => {
   const [data, setData] = useState({ email: "", password: "" });
@@ -23,7 +24,7 @@ const Login = ({ history }) => {
       e.preventDefault();
       const {
         data: { token },
-      } = await axios.post("https://still-wave-36292.herokuapp.com/auth", data);
+      } = await axios.post(`${BackendUrl}/auth`, data);
       localStorage.setItem("token", token);
       toast({
         title: "Logged In",
