@@ -47,7 +47,7 @@ const Notes = ({ history }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("/notes");
+        const { data } = await axios.get("https://still-wave-36292.herokuapp.com/notes");
         setNotes(data.notes);
         setRender(false);
       } catch (err) {

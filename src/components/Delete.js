@@ -18,7 +18,7 @@ const Delete = ({ noteId, history }) => {
 
   const onDelete = async (noteId) => {
     try {
-      await axios.delete(`/notes/${noteId}`);
+      await axios.delete(`https://still-wave-36292.herokuapp.com/notes/${noteId}`);
       history.push("/app/notes");
       toast({
         title: "Delete",

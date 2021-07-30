@@ -23,7 +23,7 @@ const Register = ({ history }) => {
       e.preventDefault();
       const {
         data: { token },
-      } = await axios.post("/register", data);
+      } = await axios.post("https://still-wave-36292.herokuapp.com/register", data);
       if (token) {
         localStorage.setItem("token", token);
         toast({

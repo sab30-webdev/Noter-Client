@@ -27,7 +27,7 @@ const Note = ({ match, history }) => {
   useEffect(() => {
     try {
       async function fetchData() {
-        const { data } = await axios.get(`/notes/${noteId}`);
+        const { data } = await axios.get(`https://still-wave-36292.herokuapp.com/notes/${noteId}`);
         setNote(data.note);
       }
       fetchData();
@@ -45,7 +45,7 @@ const Note = ({ match, history }) => {
     e.preventDefault();
 
     try {
-      const { data } = await axios.put(`/notes/${match.params.id}`, note);
+      const { data } = await axios.put(`https://still-wave-36292.herokuapp.com//notes/${match.params.id}`, note);
       if (!data.success) {
         toast({
           title: "Error",

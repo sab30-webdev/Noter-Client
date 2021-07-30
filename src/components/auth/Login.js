@@ -23,7 +23,7 @@ const Login = ({ history }) => {
       e.preventDefault();
       const {
         data: { token },
-      } = await axios.post("/auth", data);
+      } = await axios.post("https://still-wave-36292.herokuapp.com/auth", data);
       localStorage.setItem("token", token);
       toast({
         title: "Logged In",
