@@ -1,0 +1,32 @@
+.form {
+  width: 30%;
+  margin: 50px auto;
+}
+
+.form .text {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.form .textarea {
+  height: 250px;
+  font-weight: 500;
+}
+
+.btn-div {
+  height: 70px;
+}
+
+.spinner-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 500px) {
+  .form {
+    width: 90%;
+  }
+}

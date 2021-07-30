@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;515;600;700&display=swap");
+
+/* base styles & title */
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+::-webkit-scrollbar {
+  width: 0px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  color: var(--secondary);
+  user-select: none;
+  background-color: #e0dbdb;
+  background-image: url("./assets/background.png");
+}
+
+.brand-logo {
+  width: 42px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+
+.btn-chakra:active {
+  transform: scale(0.9, 0.9);
+}
+
+.newTitle {
+  word-break: break-word;
+}
+
+.newNote {
+  word-break: break-word;
+}

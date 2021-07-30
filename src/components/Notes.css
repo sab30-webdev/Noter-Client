@@ -1,0 +1,39 @@
+.form {
+  width: 60%;
+  margin: 50px auto;
+}
+
+.form .text {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.newtextarea {
+  height: 100px;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.note-container {
+  background: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 15px 2px rgba(0, 0, 0, 0.3);
+}
+
+.main-spin {
+  display: flex;
+  justify-content: center;
+}
+
+.logout-btn {
+  position: absolute !important;
+  top: 40px;
+  right: 20px;
+}
+
+.delete-account {
+  text-align: center;
+}
