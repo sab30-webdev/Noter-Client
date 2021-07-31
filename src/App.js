@@ -1,6 +1,6 @@
-import React from "react";
-import Notes from "./components/Notes";
-import Note from "./components/Note";
+import React,{useState} from "react";
+import Notes from "./components/Notes/Notes";
+import Note from "./components/Note/Note";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import PageNotFound from "./components/NotFound/Notfound"
@@ -9,9 +9,13 @@ import PrivateRoute from "./components/routing/PrivateRoute";
 import { ThemeProvider, CSSReset, Text, theme } from "@chakra-ui/core";
 import { GrNotes } from "react-icons/gr";
 
+export const UserContext=React.createContext()
+
 const App = () => {
+  const [username,setUsername]=useState(null)
 
   return (
+   <UserContext.Provider value={{username,setUsername}}>
     <ThemeProvider theme={theme}>
       <CSSReset />
       <Link to="/app/notes">
@@ -28,6 +32,7 @@ const App = () => {
         <Route path="*" component={PageNotFound} />
       </Switch>
     </ThemeProvider>
+    </UserContext.Provider>
   );
 };
 

@@ -30,7 +30,7 @@ const Login = ({ history }) => {
         title: "Logged In",
         description: "Login success",
         status: "success",
-        duration: 5000,
+        duration: 2000,
         isClosable: true,
       });
       history.push("/app/notes");

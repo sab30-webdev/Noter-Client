@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import {
@@ -10,8 +10,9 @@ import {
   Text,
 } from "@chakra-ui/core";
 import { BackendUrl } from "../../BackendUrl";
+import { UserContext } from "../../App";
 
-const Register = ({ history }) => {
+const Register = ({ history}) => {
   const [data, setData] = useState({ name: "", email: "", password: "" });
   const toast = useToast();
 
@@ -19,19 +20,23 @@ const Register = ({ history }) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+  const {setUsername}=useContext(UserContext)
+
+
   const onSubmit = async (e) => {
     try {
       e.preventDefault();
       const {
         data: { token },
       } = await axios.post(`${BackendUrl}/register`, data);
+      setUsername(data.name)
       if (token) {
         localStorage.setItem("token", token);
         toast({
           title: "Registered",
           description: "Signed up successfully",
           status: "success",
-          duration: 5000,
+          duration: 2000,
           isClosable: true,
         });
         history.push("/app/notes");
@@ -92,7 +97,7 @@ const Register = ({ history }) => {
           onClick={onSubmit}
           leftIcon="arrow-forward"
           bg="cyan.400"
-          variantColor="cyan."
+          variantColor="cyan.400"
           _hover={{ bg: "cyan.600" }}
         >
           Sign up

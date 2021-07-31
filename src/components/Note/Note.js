@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Delete from "./Delete";
+import Delete from "../Delete";
 import axios from "axios";
 import {
   Input,
@@ -13,8 +13,8 @@ import {
 } from "@chakra-ui/core";
 import { motion } from "framer-motion";
 import "./Note.css";
-import { setAuthToken } from "./../utils/setAuthToken";
-import { BackendUrl } from "../BackendUrl";
+import { setAuthToken } from "../../utils/setAuthToken";
+import { BackendUrl } from "../../BackendUrl";
 
 const Note = ({ match, history }) => {
   if (localStorage.token) {

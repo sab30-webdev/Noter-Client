@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef,useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import {
@@ -19,8 +19,9 @@ import {
 } from "@chakra-ui/core";
 import "./Notes.css";
 import { motion } from "framer-motion";
-import { setAuthToken } from "./../utils/setAuthToken";
-import { BackendUrl } from "../BackendUrl";
+import { setAuthToken } from "../../utils/setAuthToken";
+import { BackendUrl } from "../../BackendUrl";
+import { UserContext } from "../../App";
 
 
 const Notes = ({ history }) => {
@@ -33,6 +34,16 @@ const Notes = ({ history }) => {
   const [render, setRender] = useState(null);
   const inputRef = useRef();
   const toast = useToast();
+
+  const {username}=useContext(UserContext)
+
+  useEffect(()=>{
+    username && toast({
+      description: `Welcome ${username}`,
+      position:"top",
+      duration: 5000,
+    });
+  },[username,toast])
 
   const handleClick = () => {
     localStorage.removeItem("token");
@@ -125,7 +136,7 @@ const Notes = ({ history }) => {
       <Button
         className="logout-btn"
         bg="cyan.500"
-        variantColor="cyan."
+        variantColor="cyan.300"
         _hover={{ bg: "cyan.600" }}
         onClick={handleClick}
         rightIcon="arrow-right"
