@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import Delete from "../Delete";
 import axios from "axios";
 import {
@@ -16,12 +17,14 @@ import "./Note.css";
 import { setAuthToken } from "../../utils/setAuthToken";
 import { BackendUrl } from "../../BackendUrl";
 
-const Note = ({ match, history }) => {
+const Note = () => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
+  const history = useHistory();
+  const params = useParams();
   const [note, setNote] = useState(null);
-  const noteId = match.params.id;
+  const noteId = params.id;
   const toast = useToast();
 
   // Get note
@@ -46,13 +49,16 @@ const Note = ({ match, history }) => {
     e.preventDefault();
 
     try {
-      const { data } = await axios.put(`${BackendUrl}/notes/${match.params.id}`, note);
+      const { data } = await axios.put(
+        `${BackendUrl}/notes/${params.id}`,
+        note
+      );
       if (!data.success) {
         toast({
           title: "Error",
           description: "Title and the note can't be empty",
           status: "error",
-          duration: 5000,
+          duration: 3000,
           isClosable: true,
         });
       } else {
@@ -62,7 +68,7 @@ const Note = ({ match, history }) => {
           title: "Update",
           description: "Your note has been updated",
           status: "success",
-          duration: 5000,
+          duration: 3000,
           isClosable: true,
         });
       }
@@ -87,7 +93,9 @@ const Note = ({ match, history }) => {
       ) : (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <FormControl isRequired>
-            <FormLabel htmlFor="text" color="White">Title</FormLabel>
+            <FormLabel htmlFor="text" color="White">
+              Title
+            </FormLabel>
             <Input
               id="text"
               className="text"
@@ -100,7 +108,9 @@ const Note = ({ match, history }) => {
             />
           </FormControl>
           <FormControl isRequired>
-            <FormLabel htmlFor="textarea" color="White">Your Note</FormLabel>
+            <FormLabel htmlFor="textarea" color="White">
+              Your Note
+            </FormLabel>
             <Textarea
               id="textarea"
               className="textarea"

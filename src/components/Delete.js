@@ -13,7 +13,6 @@ import {
 } from "@chakra-ui/core";
 import { BackendUrl } from "../BackendUrl";
 
-
 const Delete = ({ noteId, history }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
@@ -26,7 +25,7 @@ const Delete = ({ noteId, history }) => {
         title: "Delete",
         description: "Your note has been removed",
         status: "warning",
-        duration: 5000,
+        duration: 3000,
         isClosable: true,
       });
     } catch (error) {

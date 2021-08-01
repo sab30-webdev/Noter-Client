@@ -8,12 +8,13 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/core";
-import { Link } from "react-router-dom";
-import {BackendUrl} from "../../BackendUrl"
+import { Link, useHistory } from "react-router-dom";
+import { BackendUrl } from "../../BackendUrl";
 
-const Login = ({ history }) => {
+const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const toast = useToast();
+  const history = useHistory();
 
   const onChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -30,7 +31,7 @@ const Login = ({ history }) => {
         title: "Logged In",
         description: "Login success",
         status: "success",
-        duration: 2000,
+        duration: 3000,
         isClosable: true,
       });
       history.push("/app/notes");
@@ -41,19 +42,20 @@ const Login = ({ history }) => {
           toast({
             description: `${err.msg}`,
             status: "error",
-            duration: 5000,
+            duration: 3000,
             isClosable: true,
           })
         );
       }
-      console.log(err);
     }
   };
 
   return (
     <div className="form">
       <FormControl>
-        <FormLabel htmlFor="password" color="White">Email</FormLabel>
+        <FormLabel htmlFor="password" color="White">
+          Email
+        </FormLabel>
         <Input
           id="email"
           type="email"
@@ -63,7 +65,9 @@ const Login = ({ history }) => {
           value={data.email}
           spellCheck="false"
         />
-        <FormLabel htmlFor="password" color="White">Password</FormLabel>
+        <FormLabel htmlFor="password" color="White">
+          Password
+        </FormLabel>
         <Input
           id="password"
           type="password"

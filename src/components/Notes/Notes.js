@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef,useContext } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   FormControl,
   Input,
@@ -21,10 +21,9 @@ import "./Notes.css";
 import { motion } from "framer-motion";
 import { setAuthToken } from "../../utils/setAuthToken";
 import { BackendUrl } from "../../BackendUrl";
-import { UserContext } from "../../App";
+import Welcome from "./Welcome";
 
-
-const Notes = ({ history }) => {
+const Notes = () => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -34,16 +33,9 @@ const Notes = ({ history }) => {
   const [render, setRender] = useState(null);
   const inputRef = useRef();
   const toast = useToast();
+  const history = useHistory();
 
-  const {username}=useContext(UserContext)
-
-  useEffect(()=>{
-    username && toast({
-      description: `Welcome ${username}`,
-      position:"top",
-      duration: 5000,
-    });
-  },[username,toast])
+  Welcome(); // To show Welcome (Name) after registration
 
   const handleClick = () => {
     localStorage.removeItem("token");
@@ -51,7 +43,7 @@ const Notes = ({ history }) => {
     toast({
       title: "Logged out",
       status: "info",
-      duration: 5000,
+      duration: 3000,
       isClosable: true,
     });
   };
@@ -88,10 +80,11 @@ const Notes = ({ history }) => {
           title: "Account Deleted",
           description: "Your account has been removed",
           status: "info",
-          duration: 5000,
+          duration: 3000,
           isClosable: true,
         });
       }
+      localStorage.removeItem("token");
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -108,7 +101,7 @@ const Notes = ({ history }) => {
           title: "Error",
           description: "Please add the title and the note",
           status: "error",
-          duration: 5000,
+          duration: 3000,
           isClosable: true,
         });
       } else {
@@ -120,7 +113,7 @@ const Notes = ({ history }) => {
           description:
             "Your note has been added to the list , scroll down to see!",
           status: "success",
-          duration: 5000,
+          duration: 3000,
           isClosable: true,
         });
       }
@@ -146,7 +139,6 @@ const Notes = ({ history }) => {
 
       <div className="form">
         <FormControl>
-          {/* <FormLabel htmlFor="text">Title</FormLabel> */}
           <Input
             id="text"
             className="text"
@@ -157,9 +149,9 @@ const Notes = ({ history }) => {
             onChange={onChange}
             spellCheck="false"
             ref={inputRef}
+            autoComplete="off"
           />
 
-          {/* <FormLabel htmlFor="textarea">Your Note</FormLabel> */}
           <Textarea
             id="textarea"
             className="newtextarea"

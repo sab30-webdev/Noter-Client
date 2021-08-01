@@ -1,4 +1,4 @@
-import React, { useState ,useContext} from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import {
@@ -11,17 +11,18 @@ import {
 } from "@chakra-ui/core";
 import { BackendUrl } from "../../BackendUrl";
 import { UserContext } from "../../App";
+import { useHistory } from "react-router";
 
-const Register = ({ history}) => {
+const Register = () => {
   const [data, setData] = useState({ name: "", email: "", password: "" });
   const toast = useToast();
+  const history = useHistory();
 
   const onChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const {setUsername}=useContext(UserContext)
-
+  const { setUsername } = useContext(UserContext);
 
   const onSubmit = async (e) => {
     try {
@@ -29,7 +30,7 @@ const Register = ({ history}) => {
       const {
         data: { token },
       } = await axios.post(`${BackendUrl}/register`, data);
-      setUsername(data.name)
+      setUsername(data.name);
       if (token) {
         localStorage.setItem("token", token);
         toast({
@@ -49,7 +50,7 @@ const Register = ({ history}) => {
             toast({
               description: `${err.msg}`,
               status: "error",
-              duration: 5000,
+              duration: 3000,
               isClosable: true,
             })
           );
@@ -61,7 +62,9 @@ const Register = ({ history}) => {
   return (
     <div className="form">
       <FormControl>
-        <FormLabel htmlFor="name" color="White">Name</FormLabel>
+        <FormLabel htmlFor="name" color="White">
+          Name
+        </FormLabel>
         <Input
           id="name"
           type="text"
@@ -71,7 +74,9 @@ const Register = ({ history}) => {
           value={data.name}
           spellCheck="false"
         />
-        <FormLabel htmlFor="email" color="White">Email</FormLabel>
+        <FormLabel htmlFor="email" color="White">
+          Email
+        </FormLabel>
         <Input
           id="email"
           type="email"
@@ -81,7 +86,9 @@ const Register = ({ history}) => {
           value={data.email}
           spellCheck="false"
         />
-        <FormLabel htmlFor="password" color="White">Password</FormLabel>
+        <FormLabel htmlFor="password" color="White">
+          Password
+        </FormLabel>
         <Input
           id="password"
           type="password"
