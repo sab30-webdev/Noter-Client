@@ -128,9 +128,8 @@ const Notes = () => {
     <div>
       <Button
         className="logout-btn"
-        bg="cyan.500"
-        variantColor="cyan.300"
-        _hover={{ bg: "cyan.600" }}
+        bg="cyan.300"
+        _hover={{ bg: "cyan.500" }}
         onClick={handleClick}
         rightIcon="arrow-right"
       >
@@ -168,9 +167,8 @@ const Notes = () => {
           my="10px"
           onClick={onSubmit}
           leftIcon="add"
-          bg="cyan.400"
-          variantColor="cyan."
-          _hover={{ bg: "cyan.600" }}
+          bg="cyan.300"
+          _hover={{ bg: "cyan.500" }}
         >
           Add note
         </Button>

@@ -103,26 +103,25 @@ const Register = () => {
           my="10px"
           onClick={onSubmit}
           leftIcon="arrow-forward"
-          bg="cyan.400"
-          variantColor="cyan.400"
-          _hover={{ bg: "cyan.600" }}
+          bg="cyan.300"
+          _hover={{ bg: "cyan.500" }}
         >
           Sign up
         </Button>
         <Text fontSize="1xl" color="White">
           Already have an account ?{" "}
-          <Link to="/app/auth">
-            {" "}
-            <Text
-              fontSize="1xl"
-              fontWeight="500"
-              color="cyan.300"
-              style={{ display: "inline-block" }}
-            >
-              Sign In
-            </Text>
-          </Link>
         </Text>
+        <Link to="/app/auth">
+          {" "}
+          <Text
+            fontSize="1xl"
+            fontWeight="500"
+            color="cyan.200"
+            style={{ display: "inline-block" }}
+          >
+            Sign In
+          </Text>
+        </Link>
       </FormControl>
     </div>
   );

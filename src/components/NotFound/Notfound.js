@@ -1,14 +1,31 @@
-import React from 'react'
+import React from "react";
+import "./Notfound.css";
 
 const PageNotFound = () => {
-    return (
-        <div>
-          <div style={{"display":"flex","justifyContent":"center"}}>
-          <img style={{"width":"50%"}} src={require('./assets/v.png')} alt="not found"/>
-          </div>
-            <h3 style={{"font-size":"48px","font-weight":"bold","text-align":"center","color":"white"}}>This page could not be found</h3>
-        </div>
-    )
-}
+  return (
+    <div>
+      <p
+        style={{
+          fontSize: "25px",
+          fontWeight: "bold",
+          textAlign: "center",
+          color: "white",
+          margin: "0px 15px",
+        }}
+      >
+        Sorry ! The page you are looking for is not found
+      </p>
+      <div
+        style={{ display: "flex", justifyContent: "center", width: "100vw" }}
+      >
+        <img
+          className="image"
+          src={require("./assets/24.png")}
+          alt="not found"
+        />
+      </div>
+    </div>
+  );
+};
 
-export default PageNotFound
+export default PageNotFound;

@@ -1,1 +1,1 @@
-export const BackendUrl="https://still-wave-36292.herokuapp.com"
+export const BackendUrl = "https://noter-backend.herokuapp.com";

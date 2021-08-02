@@ -82,25 +82,24 @@ const Login = () => {
           my="10px"
           onClick={onSubmit}
           leftIcon="arrow-forward"
-          bg="cyan.400"
-          variantColor="cyan."
-          _hover={{ bg: "cyan.600" }}
+          bg="cyan.300"
+          _hover={{ bg: "cyan.500" }}
         >
           Login
         </Button>
         <Text fontSize="1xl" color="White">
           Don't have an account ?{" "}
-          <Link to="/app">
-            <Text
-              fontSize="1xl"
-              fontWeight="500"
-              color="cyan.300"
-              style={{ display: "inline-block" }}
-            >
-              Sign Up
-            </Text>
-          </Link>
         </Text>
+        <Link to="/app">
+          <Text
+            fontSize="1xl"
+            fontWeight="500"
+            color="cyan.200"
+            style={{ display: "inline-block" }}
+          >
+            Sign Up
+          </Text>
+        </Link>
       </FormControl>
     </div>
   );
