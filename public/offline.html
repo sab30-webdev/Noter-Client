@@ -3,42 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App</title>
-    <style type="text/css">
-      html {
-        height: 100%;
-      }
+    <title>Oflline Page</title>
+    <style>
       body {
-        height: 100%;
-        margin: 0;
-        background: #0a1f44;
-        display: flex;
-        align-items: center;
+        background-image: url("./background.png");
+      }
+      .offline-text {
         text-align: center;
-        justify-content: center;
-      }
-
-      .city {
-        align-items: center;
-        width: 80%;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        padding: 40px 8%;
-        border-radius: 20px;
-        background: #fff;
-      }
-
-      .city-name {
-        font-size: 2em;
+        color: white;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
       }
     </style>
   </head>
   <body>
-    <div class="city">
-      <h2 class="city-name">
-        <span>Please go online to check the current weather.</span>
-      </h2>
-    </div>
+    <h1 class="offline-text">Please go online to view or edit notes</h1>
   </body>
 </html>
