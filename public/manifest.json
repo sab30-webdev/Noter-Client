@@ -1,14 +1,16 @@
 {
-  "short_name": "Noter",
-  "name": "Noter PWA",
+  "short_name": "React App",
+  "name": "Create React App Sample",
+  "prefer_related_applications": true,
   "icons": [
     {
-      "src": "./logo512.png",
+      "src": "/images/logo512.png",
       "type": "image/png",
-      "sizes": "1024x1024"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
-  "start_url": "./",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"

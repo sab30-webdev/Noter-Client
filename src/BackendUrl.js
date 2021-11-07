@@ -1,1 +1,1 @@
-export const BackendUrl = "https://noter-backend.herokuapp.com";
+export const BackendUrl = process.env.BACKEND_URL;

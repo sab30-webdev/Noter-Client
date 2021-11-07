@@ -11,21 +11,19 @@ import {
   FormLabel,
   useToast,
   Spinner,
+  Switch,
 } from "@chakra-ui/core";
 import { motion } from "framer-motion";
-import "./Note.css";
-import { setAuthToken } from "../../utils/setAuthToken";
 import { BackendUrl } from "../../BackendUrl";
+import "./Note.css";
 
 const Note = () => {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
-  }
   const history = useHistory();
   const params = useParams();
   const [note, setNote] = useState(null);
   const noteId = params.id;
   const toast = useToast();
+  const [checked, setChecked] = useState(false);
 
   // Get note
   useEffect(() => {
@@ -33,6 +31,7 @@ const Note = () => {
       async function fetchData() {
         const { data } = await axios.get(`${BackendUrl}/notes/${noteId}`);
         setNote(data.note);
+        setChecked(data.note.completed);
       }
       fetchData();
     } catch (error) {
@@ -42,6 +41,13 @@ const Note = () => {
 
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
+  };
+
+  const handleCheck = (e) => {
+    let n = note;
+    n.completed = e.target.checked;
+    setChecked(e.target.checked);
+    setNote(n);
   };
 
   // Edit node
@@ -79,7 +85,7 @@ const Note = () => {
 
   return (
     <div className="form">
-      {note === null ? (
+      {!note ? (
         <div className="spinner-container">
           <Spinner
             className="spinner"
@@ -120,20 +126,24 @@ const Note = () => {
               onChange={onChange}
               spellCheck="false"
             />
-            <Flex className="btn-div" align="center" justify="space-between">
-              <Button
-                className="btn-chakra"
-                onClick={onSubmit}
-                variantColor="green"
-                type="submit"
-                leftIcon="check"
-              >
-                Update
-              </Button>
-
-              <Delete noteId={noteId} history={history} />
-            </Flex>
           </FormControl>
+          <div className="switch-div">
+            <span>Completed ?</span>
+            <Switch isChecked={checked} onChange={handleCheck} color="red" />
+          </div>
+          <Flex className="btn-div" align="center" justify="space-between">
+            <Button
+              className="btn-chakra"
+              onClick={onSubmit}
+              variantColor="green"
+              type="submit"
+              leftIcon="check"
+            >
+              Update
+            </Button>
+
+            <Delete noteId={noteId} history={history} />
+          </Flex>
         </motion.div>
       )}
     </div>

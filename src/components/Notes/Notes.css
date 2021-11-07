@@ -37,3 +37,26 @@
 .delete-account {
   text-align: center;
 }
+
+.badge {
+  float: right;
+  margin-top: 22px;
+}
+
+.switch-div {
+  margin-top: 10px;
+}
+
+.switch-div > span {
+  color: white;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.switch-div label {
+  margin-top: 2px;
+}
+
+.date {
+  margin-top: 20px;
+}

@@ -16,20 +16,22 @@ import {
   PopoverBody,
   PopoverFooter,
   PopoverCloseButton,
+  Badge,
 } from "@chakra-ui/core";
 import "./Notes.css";
 import { motion } from "framer-motion";
-import { setAuthToken } from "../../utils/setAuthToken";
 import { BackendUrl } from "../../BackendUrl";
 import Welcome from "./Welcome";
+import DatePicker from "react-datepicker";
 
 const Notes = () => {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
-  }
-
   const [notes, setNotes] = useState(null);
-  const [newNote, setNewNote] = useState({ title: "", description: "" });
+  const [newNote, setNewNote] = useState({
+    title: "",
+    description: "",
+    completed: false,
+  });
+  const [dueDate, setDueDate] = useState(new Date());
   const [render, setRender] = useState(null);
   const inputRef = useRef();
   const toast = useToast();
@@ -68,6 +70,17 @@ const Notes = () => {
     fetchData();
   }, [render]);
 
+  const formatDate = (d) => {
+    let current_datetime = d;
+    let formatted_date =
+      current_datetime.getDate() +
+      "/" +
+      current_datetime.getMonth() +
+      "/" +
+      current_datetime.getFullYear();
+    return formatted_date;
+  };
+
   const onChange = (e) => {
     setNewNote({ ...newNote, [e.target.name]: e.target.value });
   };
@@ -95,6 +108,9 @@ const Notes = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
+    let d = formatDate(dueDate);
+    let n = { ...newNote, dueDate: d };
+
     try {
       if (newNote.title === "" || newNote.description === "") {
         toast({
@@ -105,8 +121,14 @@ const Notes = () => {
           isClosable: true,
         });
       } else {
-        await axios.post(`${BackendUrl}/notes`, newNote);
-        setNewNote({ ...newNote, title: "", description: "" });
+        await axios.post(`${BackendUrl}/notes`, n);
+        setNewNote({
+          ...newNote,
+          title: "",
+          description: "",
+          completed: false,
+        });
+        setDueDate(new Date());
         setRender(true);
         toast({
           title: "New Note",
@@ -154,11 +176,16 @@ const Notes = () => {
           <Textarea
             id="textarea"
             className="newtextarea"
-            placeholder="Your note"
+            placeholder="Add task"
             name="description"
             value={description}
             onChange={onChange}
             spellCheck="false"
+          />
+          <DatePicker
+            className="date"
+            selected={dueDate}
+            onChange={(d) => setDueDate(d)}
           />
         </FormControl>
 
@@ -170,15 +197,15 @@ const Notes = () => {
           bg="cyan.300"
           _hover={{ bg: "cyan.500" }}
         >
-          Add note
+          Add Task
         </Button>
       </div>
 
       <div className="notes">
         <Text fontSize="5xl" textAlign="center" color="cyan.300">
-          Your Notes
+          Your Tasks
         </Text>
-        {notes === null ? (
+        {!notes ? (
           <div className="main-spin">
             <Spinner
               mt="10px"
@@ -219,6 +246,14 @@ const Notes = () => {
                     >
                       Edit
                     </Button>
+                    <div className="badge">
+                      <Badge variantColor="red">
+                        Due Date : {note.dueDate}
+                      </Badge>
+                      <Badge variantColor="purple" ml="3">
+                        {note.completed ? "Completed" : "unfinished"}
+                      </Badge>
+                    </div>
                   </Link>
                 </motion.div>
               ))}

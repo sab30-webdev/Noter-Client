@@ -9,10 +9,15 @@ import PrivateRoute from "./components/routing/PrivateRoute";
 import PublicRoute from "./components/routing/PublicRoute";
 import { ThemeProvider, CSSReset, Text, theme } from "@chakra-ui/core";
 import { GrNotes } from "react-icons/gr";
+import { setAuthToken } from "./utils/setAuthToken";
 
 export const UserContext = React.createContext();
 
 const App = () => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
   const [username, setUsername] = useState(null);
 
   return (
