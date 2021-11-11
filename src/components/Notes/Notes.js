@@ -23,8 +23,13 @@ import { motion } from "framer-motion";
 import { BackendUrl } from "../../BackendUrl";
 import Welcome from "./Welcome";
 import DatePicker from "react-datepicker";
+import { setAuthToken } from "../../utils/setAuthToken";
 
 const Notes = () => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
   const [notes, setNotes] = useState(null);
   const [newNote, setNewNote] = useState({
     title: "",
